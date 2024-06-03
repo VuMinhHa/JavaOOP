@@ -2,6 +2,9 @@ package Buoi4;
 
 import java.util.Scanner;
 
+/**
+ * @author vha74
+ */
 public class Lesson04 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

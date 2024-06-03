@@ -2,9 +2,12 @@ package Buoi8;
 
 import java.util.Scanner;
 
+/**
+ * @author vha74
+ */
 public class Lesson8 {
     public static void main(String[] args) {
-        int[] a = new int[]{6,2,5,8,5};
+        int[] a = new int[]{6, 2, 5, 8, 5};
 
         Scanner scanner = new Scanner(System.in);
 
@@ -16,7 +19,7 @@ public class Lesson8 {
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.println(a[i]);
 //        }
-        for (int x : a){
+        for (int x : a) {
             System.out.println(x);
         }
     }

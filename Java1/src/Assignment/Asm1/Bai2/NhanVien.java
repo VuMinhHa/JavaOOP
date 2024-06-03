@@ -2,6 +2,9 @@ package Assignment.Asm1.Bai2;
 
 import java.util.Scanner;
 
+/**
+ * @author vha74
+ */
 public class NhanVien {
     private String maNV;
     private String hoTen;
@@ -16,33 +19,9 @@ public class NhanVien {
         this.luong = luong;
     }
 
-    public String getMaNV() {
-        return maNV;
-    }
-
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
-    }
-
-    public String getHoTen() {
-        return hoTen;
-    }
-
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public Double getLuong() {
-        return luong;
-    }
-
-    public void setLuong(Double luong) {
-        this.luong = luong;
-    }
-
     @Override
     public String toString() {
-        return "\nMã = " + maNV + ", Họ tên  = " + hoTen + ", " + "Lương = " + luong;
+        return "\nMã nhân viên : " + maNV + ", Họ tên : " + hoTen + ", " + "Lương : " + luong + ".";
     }
 
     public void nhapThongTin() {

@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner= new Scanner(System.in);
-        while (true){
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
             int choice = scanner.nextInt();
             System.out.println("Menu");
             System.out.println("1. Bai1");
             System.out.println("2. Bai2");
-            switch (choice){
+            switch (choice) {
                 case 1:
                     tongChanLeTu1N();
                     break;
@@ -32,10 +32,10 @@ public class Main {
             System.out.println("N la so nguyen duong");
         }
 
-        int sumLe= 0;
+        int sumLe = 0;
         int sumChan = 0;
         for (int i = 1; i <= n; i += 2) sumLe += i;
-        for (int i = 2;i<=n;i+=2) sumChan+=i;
+        for (int i = 2; i <= n; i += 2) sumChan += i;
         System.out.println("Tong ca so le tu 1 den N = " + sumLe);
         System.out.println("Tong ca so chan tu 1 den N = " + sumChan);
     }
@@ -58,8 +58,9 @@ public class Main {
         } else if (diemTB >= 4) {
             hang = "Hang C";
         } else {
-            hang = "Hang F";}
-        System.out.println("Diem trung binh 3 mon = " + String.format("%.2f",diemTB) + ". " + hang);
+            hang = "Hang F";
+        }
+        System.out.println("Diem trung binh 3 mon = " + String.format("%.2f", diemTB) + ". " + hang);
     }
 
 

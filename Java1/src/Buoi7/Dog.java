@@ -1,13 +1,12 @@
 package Buoi7;
 
+/**
+ * @author vha74
+ */
 public class Dog {
     public double canNang;
     public String loai;
     public String ten;
-
-    public void sua() {
-        System.out.println("Ang ang ang");
-    }
 
     public Dog() {
         this.canNang = 1;
@@ -19,6 +18,10 @@ public class Dog {
         this.canNang = canNang;
         this.loai = loai;
         this.ten = ten;
+    }
+
+    public void sua() {
+        System.out.println("Ang ang ang");
     }
 
     public double getCanNang() {
