@@ -1,14 +1,13 @@
 package Assignment.Asm2;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
 public class NhanVienService {
-    static ArrayList<NhanVien> danhSachNhanViens = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in);
-    static NhanVien nhanVien = new NhanVien();
+    ArrayList<NhanVien> danhSachNhanViens = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+    NhanVien nhanVien = new NhanVien();
 
     public void menu() {
         fakeData();
@@ -22,11 +21,11 @@ public class NhanVienService {
             System.out.println("| 5. Cập nhật thông tin nhân viên theo mã nhập từ bàn phím. |");
             System.out.println("| 6. Tìm các nhân viên theo khoảng lương nhập từ bàn phím.  |");
             System.out.println("| 7. Sắp xếp nhân viên theo họ và tên.                      |");
-            System.out.println("| 8. Sắp xếp nhân viên theo thu nhập.                       |");
+            System.out.println("| 8. Sắp xếp nhân viên theo thu nhập giảm dần.              |");
             System.out.println("| 9. Xuất 5 nhân viên có thu nhập cao nhất.                 |");
             System.out.println("| 0. Thoát                                                  |");
             System.out.println("|-----------------------------------------------------------|");
-            System.out.println("Chọn chức năng [1-0]:");
+            System.out.println("Chọn chức năng [1-9]:");
             luaChon = scanner.nextInt();
             scanner.nextLine();
             switch (luaChon) {
@@ -69,53 +68,33 @@ public class NhanVienService {
     }
 
     private void xuat5NhanVienCoThuNhapCaoNhat() {
-        Collections.sort(danhSachNhanViens, new Comparator<NhanVien>() {
-            @Override
-            public int compare(NhanVien nv1, NhanVien nv2) {
-                double thuNhap1 = nv1.getLuong() + nv1.getTienTrachNhiem();
-                double thuNhap2 = nv2.getLuong() + nv2.getTienTrachNhiem();
-                if (thuNhap1 < thuNhap2) {
-                    return 1;
-                } else if (thuNhap1 > thuNhap2) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            }
-        });
-
+        sapXep();
         // Xuất thông tin của 5 nhân viên đầu tiên
         System.out.println("5 nhân viên có thu nhập cao nhất:");
         for (int i = 0; i < 5 && i < danhSachNhanViens.size(); i++) {
+            System.out.println((i + 1) + ". ");
             danhSachNhanViens.get(i).xuatThongTin();
         }
     }
 
-    private void sapXepTheoThuNhap() {
-        Collections.sort(danhSachNhanViens, new Comparator<NhanVien>() {
+    private void sapXep() {
+        danhSachNhanViens.sort(new Comparator<NhanVien>() {
             @Override
             public int compare(NhanVien o1, NhanVien o2) {
                 double thuNhap1 = o1.getLuong() + o1.getTienTrachNhiem();
                 double thuNhap2 = o2.getLuong() + o2.getTienTrachNhiem();
-                if (thuNhap1 < thuNhap2) {
-                    return 1;
-                } else if (thuNhap1 > thuNhap2) {
-                    return -1;
-                } else {
-                    return 0;
-                }
+                return Double.compare(thuNhap2, thuNhap1);
             }
         });
+    }
+
+    private void sapXepTheoThuNhap() {
+        sapXep();
         xuatDanhSachNhanVien();
     }
 
     private void sapXepTheoHoTen() {
-        Collections.sort(danhSachNhanViens, new Comparator<NhanVien>() {
-            @Override
-            public int compare(NhanVien o1, NhanVien o2) {
-                return o1.getHoTen().compareTo(o2.getHoTen());
-            }
-        });
+        danhSachNhanViens.sort(Comparator.comparing(NhanVien::getHoTen));
         xuatDanhSachNhanVien();
     }
 
@@ -135,7 +114,7 @@ public class NhanVienService {
         System.out.println("Nhap ma nhan vien can sua: ");
         String maNhanVien = scanner.nextLine();
         for (NhanVien danhSachNhanVien : danhSachNhanViens) {
-            if (danhSachNhanVien.getMaNV().equals(maNhanVien)) {
+            if (danhSachNhanVien.getMaNV().equalsIgnoreCase(maNhanVien)) {
                 System.out.println("Nhập họ tên mới: ");
                 danhSachNhanVien.setHoTen(scanner.nextLine());
                 System.out.println("Nhập lương mới: ");
@@ -153,7 +132,7 @@ public class NhanVienService {
         System.out.println("Nhập mã nhân viên cần xóa: ");
         String maNhanVien = scanner.nextLine();
         for (NhanVien danhSachNhanVien : danhSachNhanViens) {
-            if (danhSachNhanVien.getMaNV().equals(maNhanVien)) {
+            if (danhSachNhanVien.getMaNV().equalsIgnoreCase(maNhanVien)) {
                 danhSachNhanViens.remove(danhSachNhanVien);
                 System.out.println("Da xoa nhan vien thanh cong ma: " + maNhanVien);
                 return;
@@ -166,13 +145,14 @@ public class NhanVienService {
         System.out.println("Nhap ma nhan vien can tim: ");
         String maNhanVien = scanner.next();
         for (NhanVien nhanVien : danhSachNhanViens) {
-            if (nhanVien.getMaNV().equals(maNhanVien)) {
+            if (nhanVien.getMaNV().equalsIgnoreCase(maNhanVien)) {
                 nhanVien.xuatThongTin();
             }
         }
     }
 
     private void xuatDanhSachNhanVien() {
+        System.out.println(" DANH SACH NHAN VIEN ");
         for (NhanVien danhSachNhanVien : danhSachNhanViens) {
             danhSachNhanVien.xuatThongTin();
         }
@@ -182,7 +162,7 @@ public class NhanVienService {
         do {
             nhanVien.nhapThongTin();
             danhSachNhanViens.add(nhanVien);
-            System.out.println("Bạn có muốn nhập tiếp không? (1.YES/2.NO)");
+            System.out.println("Bạn có muốn nhập tiếp không? (1.Yes/2.No)");
         } while (scanner.nextInt() == 1);
     }
 
