@@ -13,7 +13,7 @@ public class NhanVienService {
         fakeData();
         int luaChon;
         do {
-            System.out.println("|============================Menu===========================|");
+            System.out.println("|----------------------------Menu---------------------------|");
             System.out.println("| 1. Nhập thông tin nhân viên.                              |");
             System.out.println("| 2. Xuất thông tin nhân viên.                              |");
             System.out.println("| 3. Tìm và hiển thị nhân viên theo mã nhập từ bàn phím.    |");
@@ -68,7 +68,7 @@ public class NhanVienService {
     }
 
     private void xuat5NhanVienCoThuNhapCaoNhat() {
-        sapXep();
+        sapXepGiamDan();
         // Xuất thông tin của 5 nhân viên đầu tiên
         System.out.println("5 nhân viên có thu nhập cao nhất:");
         for (int i = 0; i < 5 && i < danhSachNhanViens.size(); i++) {
@@ -77,7 +77,7 @@ public class NhanVienService {
         }
     }
 
-    private void sapXep() {
+    private void sapXepGiamDan() {
         danhSachNhanViens.sort(new Comparator<NhanVien>() {
             @Override
             public int compare(NhanVien o1, NhanVien o2) {
@@ -89,7 +89,7 @@ public class NhanVienService {
     }
 
     private void sapXepTheoThuNhap() {
-        sapXep();
+        sapXepGiamDan();
         xuatDanhSachNhanVien();
     }
 
